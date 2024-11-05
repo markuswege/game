@@ -16,6 +16,7 @@ use bevy_fast_tilemap::plugin::FastTileMapPlugin;
 use bevy_fast_tilemap::prelude::AXONOMETRIC;
 use mouse_controls_camera::MouseControlsCameraPlugin;
 use rand::Rng;
+use tatami_dungeon::{Dungeon, Tile};
 
 fn main() {
     App::new()
@@ -62,7 +63,7 @@ fn setup(
     .with_padding(vec2(256.0, 128.0), vec2(256.0, 128.0), vec2(256.0, 128.0))
     .with_projection(AXONOMETRIC)
     .with_dominance_overhang()
-    .build_and_initialize(init_map);
+    .build_and_initialize(init_dungeon);
 
     commands.spawn(MapBundleManaged::new(map, materials.as_mut()));
 }
@@ -72,6 +73,20 @@ fn init_map(m: &mut MapIndexerMut) {
     for y in 0..m.size().y {
         for x in 0..m.size().x {
             m.set(x, y, rng.gen_range(1..4));
+        }
+    }
+}
+
+fn init_dungeon(m: &mut MapIndexerMut) {
+    let dungeon = Dungeon::generate();
+    for floor in &dungeon.floors {
+        for (x, column) in floor.tiles.iter().enumerate() {
+            for (y, tile) in column.iter().enumerate() {
+                match tile {
+                    Tile::Floor => m.set(x as u32, y as u32, 2), // draw floor sprite at (x, y)
+                    Tile::Wall => m.set(x as u32, y as u32, 1),  // draw wall sprite at (x, y)
+                }
+            }
         }
     }
 }

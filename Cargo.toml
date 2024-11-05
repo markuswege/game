@@ -20,6 +20,7 @@ bevy = "0.14.2"
 bevy_asset_loader = "0.21.0"
 bevy_fast_tilemap = { git = "https://github.com/Droggelbecher/bevy-fast-tilemap.git" }
 rand = "0.8.5"
+tatami-dungeon = "0.1.5"
 
 [dev-dependencies]
 bevy-inspector-egui = { version = "0.25.2", default-features = false }
