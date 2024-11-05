@@ -6,13 +6,9 @@ use bevy::{
     prelude::*,
 };
 
+#[derive(Default)]
 pub struct MouseControlsCameraPlugin;
 
-impl Default for MouseControlsCameraPlugin {
-    fn default() -> MouseControlsCameraPlugin {
-        MouseControlsCameraPlugin {}
-    }
-}
 
 impl Plugin for MouseControlsCameraPlugin {
     fn build(&self, app: &mut App) {

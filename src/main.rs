@@ -40,8 +40,8 @@ fn main() {
                     ..default()
                 }),
             LogDiagnosticsPlugin::default(),
-            FrameTimeDiagnosticsPlugin::default(),
-            MouseControlsCameraPlugin::default(),
+            FrameTimeDiagnosticsPlugin,
+            MouseControlsCameraPlugin,
             FastTileMapPlugin::default(),
         ))
         .add_systems(Startup, setup)
