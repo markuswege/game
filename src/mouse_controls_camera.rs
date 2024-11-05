@@ -9,7 +9,6 @@ use bevy::{
 #[derive(Default)]
 pub struct MouseControlsCameraPlugin;
 
-
 impl Plugin for MouseControlsCameraPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(Update, mouse_controls_camera);
